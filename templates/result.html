@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SMS Spam Classification</title>	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+html, body{
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  color:#222;
+}
+
+.navbar-brand img{
+  width: 80px;
+  height: 70px;
+}
+.navbar-nav li{
+  padding-right: 20px;
+}
+.nav-link{
+  font-size: 1.1em !important;
+}
+.carousel-inner img{
+  width: 100%;
+}
+.carousel-caption {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.carousel-caption h1 {
+  font-size: 500%;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 10px #000;
+}
+.carousel-caption h3 {
+  font-size: 200%;
+  font-weight: 500;
+  text-shadow: 1px 1px 10px #000;
+  padding-bottom: 1rem;
+}
+.btn-primary {
+  background-color: #6648b1;
+  border: 1px solid #564d7c;
+  width: 200px;
+}
+.btn-primary:hover {
+  background-color: #563d7c;
+  border: 1px solid #563d7c;
+}
+.jumbotron {
+  padding: 1rem;
+  border-radius: 0;
+  height: 200px;
+}
+.padding {
+  padding-bottom: 2rem;
+} 
+.welcome {
+  width: 75%;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+.welcome hr {
+  border-top: 2px solid #b4b4b4;
+  width: 95%;
+  margin-top: .3rem;
+  margin-bottom: 1rem;
+}
+.fa-code {
+  color: #e54d26;
+}
+.fa-bold {
+  color: #563d7c;
+}
+.fa-css3 {
+  color: #2a63af;
+}
+.fa-code, .fa-bold, .fa-css3 {
+  font-size: 4em;
+  margin: 1rem;
+}
+.fun{
+  width: 100%;
+  margin-bottom: 2rem;
+}
+.gif {
+  max-width: 100%;
+}
+.social a {
+  font-size: 4.5em;
+  padding: 3rem;
+}
+.fa-facebook {
+  color: #3b5998;
+}
+.fa-linkedin-in {
+  color: #0072b1;
+}
+.fa-instagram {
+  color: #e95950;
+}
+.fa-github {
+  color: #211F1F;
+}
+
+.fa-facebook:hover,
+.fa-linkedin-in:hover,
+.fa-github:hover,
+.fa-instagram:hover,
+{
+  color: #d5d5d5;
+}
+footer {
+  background-color: #3f3f3f;
+  color: #d5d5d5;
+  padding-top: 2rem;
+}
+hr.light {
+  border-top: 1px solid #d5d5d5;
+  width: 75%;
+  margin-top: .8rem;
+  margin-bottom: 1rem;
+}
+footer a {
+  color: #d5d5d5;
+}
+hr.light-100 {
+  border-top: 1px solid #d5d5d5;
+  width: 100%;
+  margin-top: .8rem;
+  margin-bottom: 1rem;
+}
+.footer-image img{
+  width: 150px;
+  height: 60px;
+}
+
+
+/*---Media Queries --*/
+@media (max-width: 1500px){
+  .carousel-inner img{
+    width: 100%;
+    height: 550px;
+  }
+}
+
+@media (max-width: 992px) {
+  .social a{
+    font-size: 4em;
+    padding: 2rem;
+  }
+  .carousel-inner img{
+    width: 100%;
+    height: 400px;
+  }
+  }
+@media (max-width: 768px) {
+  .carousel-caption {
+    top: 45%;
+  }
+  .carousel-caption h1 {
+    font-size: 350%;
+  }
+  .carousel-caption h3 {
+    font-size: 140%;
+    font-weight: 400;
+    padding-bottom: 0.2rem;
+  }
+  .carousel-caption .btn {
+    font-size: 95%;
+    padding: 8px 14px;
+  }
+  .display-4 {
+    font-size: 200%;
+  } 
+  .display-4 {
+    font-size: 200%;
+  }
+  .social a{
+    font-size: 2.5em;
+    padding: 1.2rem;
+  }
+  .carousel-inner img{
+    width: 100%;
+    height: 100%;
+  }
+}
+@media (max-width: 576px) {
+  carousel-caption {
+    top: 40%;
+  }
+  .carousel-caption h1 {
+    font-size: 250%;
+  }
+  .carousel-caption h3 {
+    font-size: 110%;
+  }
+  .carousel-caption .btn {
+    font-size: 90%;
+    padding: 4px 8px;
+  }
+  .carousel-indicators {
+    display: none;
+  }
+  .display-4 {
+    font-size: 160%;
+  }
+  .social a{
+    font-size: 2em;
+    padding: 1.7rem;
+  }
+  .carousel-inner img{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+
+/*---Firefox Bug Fix --*/
+.carousel-item {
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+}
+
+/*--- Bootstrap Padding Fix --*/
+[class*="col-"] {
+    padding: 1rem;
+}
+
+
+
+
+
+/*
+Extra small (xs) devices (portrait phones, less than 576px)
+No media query since this is the default in Bootstrap
+
+Small (sm) devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+Medium (md) devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+Large (lg) devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+Extra (xl) large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+*/
+
+</style>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#"><img src="https://res.cloudinary.com/dz4wxhdga/image/upload/v1608714104/ML_LOGO_dsklpk.png"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+				Machine Learning Web API
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+<!--- Jumbotron -->
+<div class="container-fluid">
+	<div class="row jumbotron">
+		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+			<p class="lead">Web API for Machine Learning Model overcomes the barrier between the developers and consumers.</p>
+			<p class="lead">It helps the developer to present the Machine Learning Model to the people without explaining<br>them the complexity of the code.</p>
+			<p class="lead">The Web API makes the complex model user-friendly, thus, benefitting people. </p>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+			<img class="card-img-top" src="https://www.ixon.cloud/media/ciqpa3f3/api-2x.png?anchor=center&mode=crop&rnd=132258976041100000">
+		</div>
+	</div>
+</div>
+
+<!--- Heading Section -->
+<div class="container-fluid padding">
+	<div class="row welcome text-center">
+		<div class="col-12">
+			<h1 class="display-4">SMS Spam Classification</h1>
+		</div>
+		<hr>
+	</div>
+</div>
+<center>
+<div>
+	{% if prediction == 1%}
+	<h1 style="color:red;">Spam</h1>
+	{% elif prediction == 0%}
+	<h1 style="color:blue;">Not a Spam (It is a Ham)</h1>
+	{% endif %}
+<hr>
+</div>
+</center>
+
+<!--- Connect -->
+<div class="container-fluid padding">
+	<div class="row text-center padding">
+		<div class="col-12">
+			<h2>Connect</h2>
+		</div>
+		<div class="col-12 social padding">
+			<a href="https://www.facebook.com/harshitjain330"><i class="fab fa-facebook"></i></a>
+			<a href="https://www.linkedin.com/in/harshit-kumar-jain-aa88921a2/"><i class="fab fa-linkedin-in"></i></a>
+			<a href="https://www.instagram.com/harshitjain_15/"><i class="fab fa-instagram"></i></a>
+			<a href="https://github.com/harshitkumarj"><i class="fab fa-github"></i></a>
+		</div>
+	</div>
+</div>
+
+<!--- Footer -->
+<footer>
+<right>Created by HARSHIT KUMAR JAIN</right><br><br>
+</footer>
+
+</body>
+</html>
