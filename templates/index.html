@@ -322,10 +322,18 @@ Extra (xl) large devices (large desktops, 1200px and up)
 		<br><br>
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
-	<br>
-   <br>
-   <center><h2>{{ prediction_text }}</h2></center><br>
-	<hr>
+	
+
+<center>
+<div>
+	{% if prediction == 1%}
+	<h1 style="color:red;">Spam</h1>
+	{% elif prediction == 0%}
+	<h1 style="color:blue;">Not a Spam (It is a Ham)</h1>
+	{% endif %}
+<hr>
+</div>
+</center>
 
 <!--- Connect -->
 <div class="container-fluid padding">
